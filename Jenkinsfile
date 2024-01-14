@@ -20,8 +20,17 @@ pipeline {
         stage('Run Tests') {
             steps {
                 script {
-                    // Run tests (if applicable to your project)
+                    // Run tests 
                     sh 'mvn test'
+                }
+            }
+        }
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    withSonarQubeEnv('SonarQube') {
+                        sh 'mvn sonar:sonar'
+                    }
                 }
             }
         }
