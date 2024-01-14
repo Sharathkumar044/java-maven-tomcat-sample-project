@@ -1,16 +1,20 @@
 pipeline {
     agent any
+
     stages {
-        stage('Build Application') {
+        stage('Checkout') {
             steps {
-                sh 'mvn -f pom.xml clean package'
-            }
-            post {
-                success {
-                    echo "Now Archiving the Artifacts....."
-                    archiveArtifacts artifacts: '**/*.war'
+                script {
+                    checkout([$class: 'GitSCM', branches: [[name: 'master']], userRemoteConfigs: [[url: 'https://github.com/Sharathkumar044/spring-boot-webapp.git']]])
                 }
             }
         }
+        stage('Build') {
+            steps {
+                script {
+                    sh 'mvn clean install'
+                }
+            }
+        }  
     }
 }
