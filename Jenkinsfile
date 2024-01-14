@@ -42,9 +42,16 @@ pipeline {
                 }
             }
         }
-        post {
-            success {
-                archiveArtifacts(artifacts: 'target/*.jar', allowEmptyArchive: true)
+        stage('Post-Build') {
+            steps {
+                script {
+                    // Additional post-build steps if needed
+                }
+            }
+            post {
+                success {
+                    archiveArtifacts(artifacts: 'target/*.jar', allowEmptyArchive: true)
+                }
             }
         }
     }  
