@@ -6,7 +6,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    checkout([$class: 'GitSCM', branches: [[name: 'master']], userRemoteConfigs: [[url: 'https://github.com/Sharathkumar044/spring-boot-webapp.git']]])
+                    checkout([$class: 'GitSCM', branches: [[name: 'feature-branch']], userRemoteConfigs: [[url: 'https://github.com/Sharathkumar044/java-maven-tomcat-sample-project.git']]])
                 }
             }
         }
