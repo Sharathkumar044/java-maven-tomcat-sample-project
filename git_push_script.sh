@@ -14,3 +14,4 @@ git commit -m "Automated commit message"
 
 # Push changes to the remote repository
 git push origin "$branch_name"
+
