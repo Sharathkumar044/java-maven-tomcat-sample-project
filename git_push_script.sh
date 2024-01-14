@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Navigate to your Git repository
-#cd /path/to/your/repo
+# cd /path/to/your/repo
 
-# Prompt the user for the branch name
-read -p "Enter the branch name: " branch_name
+# Get the current branch name
+branch_name=$(git rev-parse --abbrev-ref HEAD)
 
 # Add all changes
 git add .
@@ -14,4 +14,3 @@ git commit -m "Automated commit message"
 
 # Push changes to the remote repository
 git push origin "$branch_name"
-
