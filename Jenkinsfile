@@ -42,5 +42,15 @@ pipeline {
                 }
             }
         }
-    }  
+        stage('Deploy to Tomcat') {
+            steps {
+                script {
+                    // Deploy the WAR file to Tomcat
+                    withCredentials([usernamePassword(credentialsId: 'your-tomcat-credentials-id', usernameVariable: 'TOMCAT_USER', passwordVariable: 'TOMCAT_PASSWORD')]) {
+                        sh 'curl --upload-file target/your-application.war "http://${TOMCAT_USER}:${TOMCAT_PASSWORD}@your-tomcat-server:8080/manager/text/deploy?path=/your-application"'
+                    }
+                }
+            }
+        }
+    }
 }
